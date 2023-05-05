@@ -11,21 +11,21 @@ spec:
       app: currency-conversion
   template:
     metadata:
-      name: currency-conversion
+      labels:
+        app: currency-conversion
     spec:
       container:
-        - name: currency-conversion
-          image:  currency-conversion:latest
-          imagePullPolicy: Never
-          ports:
-          - containerPort: 8100
-          env:
-            name: currency-conversion-config
-            valueFrom:
-              configMapKeyRef:
-                name: currency-exe-configMap
-                key: currency-exc-url
-
+      - name: currency-conversion
+        image:  currency-conversion:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8100
+        env:
+        - name: currency-conversion-config
+          valueFrom:
+            configMapKeyRef:
+              name: currency-exe-configMap
+              key: currency-exc-url
 ---
 apiVersion: v1
 kind: Service
@@ -34,7 +34,7 @@ metadata:
 spec:
   selector:
     app: currency-conversion
-  type: loadBalancer
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 8100
