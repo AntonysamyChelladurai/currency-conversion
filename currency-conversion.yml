@@ -14,9 +14,9 @@ spec:
       labels:
         app: currency-conversion
     spec:
-      container:
+      containers:
       - name: currency-conversion
-        image:  currency-conversion:latest
+        image: currency-conversion:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 8100
