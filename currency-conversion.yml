@@ -1,7 +1,9 @@
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: currency-conversion
+  name: currency-conversion-service
+  labels:
+    app: currency-conversion
 spec:
   replicas: 2
   selector:
