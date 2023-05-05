@@ -24,7 +24,7 @@ spec:
         - name: currency-conversion-config
           valueFrom:
             configMapKeyRef:
-              name: currency-exe-configMap
+              name: currency-exe-configmap
               key: currency-exc-url
 ---
 apiVersion: v1
