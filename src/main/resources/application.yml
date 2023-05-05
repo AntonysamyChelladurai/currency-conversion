@@ -5,13 +5,9 @@ spring:
     import: optional:configserver:http://localhost:8888
 
   cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
     kubernetes:
-      discovery:
-        enabled: false
-        all-namespaces: true
+      loadbalancer:
+        mode: service
 
 server:
   port: 8100
