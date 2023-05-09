@@ -20,6 +20,9 @@ public class CurrencyConversionController {
     @Autowired
     CurrencyExchangeProxy proxy;
 
+    @Autowired
+    RestTemplate restTemplate;
+
     @GetMapping("/hello")
     public String greetings(){
         return "Hello CurrencyConversion !!!";
@@ -34,7 +37,9 @@ public class CurrencyConversionController {
         HashMap<String, String> uriVariable = new HashMap<>();
         uriVariable.put("from",from);
         uriVariable.put("to",to);
-        ResponseEntity<CurrencyConversion> currencyresponse=new RestTemplate().getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}",CurrencyConversion.class,uriVariable);
+       /* ResponseEntity<CurrencyConversion> currencyresponse=new RestTemplate().getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}",CurrencyConversion.class,uriVariable);*/
+
+        ResponseEntity<CurrencyConversion> currencyresponse=new RestTemplate().getForEntity("http://currency-exc-service:8000/currency-exchange/from/{from}/to/{to}",CurrencyConversion.class,uriVariable);
         CurrencyConversion currencyConversion= currencyresponse.getBody();
         if (currencyConversion != null) {
             currencyConversion.setQuantity(quantity);
